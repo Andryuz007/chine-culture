@@ -6,33 +6,64 @@
 <title>The Culture Swap Challenge - Chinese Spring Festival</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Lora:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Lora:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
+/* VARIABLES DE COLOR - MODO DÍA Y NOCHE */
 :root {
   --bg-color: #f7f4ed; 
   --text-main: #2c2c2c;
   --text-muted: #5a5a5a;
   --accent-red: #b82323; 
+  --accent-gold: #d4af37;
   --accent-dark: #1a1a1a;
   --card-bg: #ffffff;
   --border-color: #e0dcd1;
+  --nav-bg: rgba(247, 244, 237, 0.95);
+  --shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+[data-theme="dark"] {
+  --bg-color: #0a0a0a;
+  --text-main: #e0e0e0;
+  --text-muted: #a0a0a0;
+  --accent-red: #ff3333; 
+  --accent-gold: #ffcc00;
+  --accent-dark: #ffffff;
+  --card-bg: #151515;
+  --border-color: #333333;
+  --nav-bg: rgba(10, 10, 10, 0.95);
+  --shadow: 0 15px 30px rgba(255,255,255,0.05);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
   background-color: var(--bg-color);
-  background-image: url("https://www.transparenttextures.com/patterns/rice-paper.png"); 
   color: var(--text-main);
   font-family: 'Lora', serif;
   line-height: 1.7;
+  transition: background-color 0.4s, color 0.4s;
 }
 
+/* BOTÓN DÍA / NOCHE */
+.theme-toggle {
+  position: fixed; top: 20px; right: 20px; z-index: 1000;
+  width: 50px; height: 50px; border-radius: 50%;
+  background: var(--accent-red); color: white;
+  border: 2px solid var(--accent-gold); cursor: pointer;
+  font-size: 1.2rem; display: grid; place-items: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  transition: all 0.3s;
+}
+.theme-toggle:hover { transform: scale(1.1) rotate(15deg); }
+
+/* NAVEGACIÓN */
 nav {
-  position: fixed; top: 0; width: 100%; z-index: 100;
-  background: rgba(247, 244, 237, 0.95);
+  position: fixed; top: 0; width: 100%; z-index: 900;
+  background: var(--nav-bg);
   border-bottom: 1px solid var(--border-color);
   backdrop-filter: blur(10px);
+  transition: background 0.4s;
 }
 .nav-inner {
   max-width: 1000px; margin: 0 auto; padding: 15px 20px;
@@ -52,17 +83,16 @@ nav {
 
 main { max-width: 900px; margin: 100px auto 50px; padding: 0 20px; }
 
+/* HERO SECTION */
 .hero { text-align: center; margin-bottom: 60px; }
 .hero h1 {
   font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 5vw, 4rem);
   color: var(--accent-dark); line-height: 1.1; margin-bottom: 15px;
 }
-.hero p {
-  font-size: 1.1rem; color: var(--text-muted); max-width: 600px; margin: 0 auto 30px;
-}
+.hero p { font-size: 1.1rem; color: var(--text-muted); max-width: 600px; margin: 0 auto 30px; }
 .hero-image {
-  width: 100%; border-radius: 12px; box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-  border: 8px solid var(--card-bg);
+  width: 100%; border-radius: 12px; box-shadow: var(--shadow);
+  border: 8px solid var(--card-bg); transition: border 0.4s;
 }
 
 .section-title {
@@ -70,30 +100,28 @@ main { max-width: 900px; margin: 100px auto 50px; padding: 0 20px; }
   color: var(--accent-red); text-align: center; margin: 60px 0 30px;
 }
 .section-title::after {
-  content: "❦"; display: block; font-size: 1.2rem; color: var(--accent-dark); margin-top: 10px;
+  content: "❦"; display: block; font-size: 1.2rem; color: var(--accent-gold); margin-top: 10px;
 }
 
+/* TARJETAS DESPLEGABLES (ACORDEÓN) */
 .accordion {
   background: var(--card-bg); border: 1px solid var(--border-color);
   border-radius: 8px; margin-bottom: 20px; overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.03); transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.03); transition: all 0.4s ease;
 }
-.accordion:hover { box-shadow: 0 8px 25px rgba(0,0,0,0.08); }
-
+.accordion:hover { box-shadow: var(--shadow); border-color: var(--accent-gold); }
 .accordion-header {
   padding: 20px 25px; cursor: pointer; display: flex; justify-content: space-between; align-items: center;
-  background: var(--card-bg); transition: background 0.3s;
 }
-.accordion-header h3 {
-  font-family: 'Inter', sans-serif; font-size: 1.1rem; font-weight: 600; color: var(--accent-dark);
-}
+.accordion-header h3 { font-family: 'Inter', sans-serif; font-size: 1.1rem; font-weight: 600; color: var(--text-main); }
 .accordion-header .icon { font-size: 1.5rem; color: var(--accent-red); transition: transform 0.3s; }
 .accordion.active .accordion-header .icon { transform: rotate(45deg); }
 
 .accordion-content {
   max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out;
-  background: #faf9f6; border-top: 1px solid transparent;
+  background: rgba(0,0,0,0.02); border-top: 1px solid transparent;
 }
+[data-theme="dark"] .accordion-content { background: rgba(255,255,255,0.02); }
 .accordion.active .accordion-content { border-top-color: var(--border-color); }
 .accordion-inner { padding: 25px; }
 
@@ -104,22 +132,39 @@ main { max-width: 900px; margin: 100px auto 50px; padding: 0 20px; }
 }
 .grammar-box strong { color: var(--accent-red); font-family: 'Inter', sans-serif; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px; }
 
-.section-img {
-  width: 100%; border-radius: 8px; margin-bottom: 20px; object-fit: cover; max-height: 400px;
-}
+.section-img { width: 100%; border-radius: 8px; margin-bottom: 20px; object-fit: cover; max-height: 400px; }
 
-.challenge-box {
-  background: var(--accent-dark); color: #fff; padding: 40px; border-radius: 12px;
-  text-align: center; margin-top: 60px;
+/* SECCIÓN DEL QUIZ INTERACTIVO */
+.quiz-section {
+  background: var(--card-bg); border: 2px solid var(--accent-red);
+  border-radius: 12px; padding: 40px; margin-top: 60px; box-shadow: var(--shadow);
 }
-.challenge-box h2 { font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 15px; color: #ffd700; }
-.challenge-box p { font-size: 1.1rem; margin-bottom: 25px; }
-.btn-challenge {
-  display: inline-block; background: var(--accent-red); color: #fff; text-decoration: none;
-  padding: 12px 30px; border-radius: 30px; font-family: 'Inter', sans-serif; font-weight: 600;
-  transition: background 0.3s, transform 0.3s;
+.quiz-section h2 { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--accent-red); text-align: center; margin-bottom: 10px; }
+.quiz-section > p { text-align: center; color: var(--text-muted); margin-bottom: 30px; }
+
+.quiz-item { margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px dashed var(--border-color); }
+.quiz-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.question { font-weight: 600; font-size: 1.1rem; margin-bottom: 15px; color: var(--text-main); }
+.options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 15px; }
+.option {
+  display: flex; align-items: center; gap: 10px; padding: 10px 15px;
+  background: var(--bg-color); border: 1px solid var(--border-color);
+  border-radius: 6px; cursor: pointer; transition: all 0.2s;
 }
-.btn-challenge:hover { background: #8a1a1a; transform: translateY(-3px); }
+.option:hover { border-color: var(--accent-gold); }
+.option input { accent-color: var(--accent-red); }
+
+.btn-check {
+  background: var(--accent-dark); color: var(--bg-color);
+  border: none; padding: 8px 20px; border-radius: 20px;
+  font-family: 'Inter', sans-serif; font-weight: 600; cursor: pointer;
+  transition: background 0.3s;
+}
+.btn-check:hover { background: var(--accent-red); color: white; }
+
+.feedback { margin-top: 12px; font-weight: 600; display: none; padding: 10px; border-radius: 6px; }
+.feedback.correct { display: block; background: rgba(40, 167, 69, 0.1); color: #28a745; border-left: 4px solid #28a745; }
+.feedback.incorrect { display: block; background: rgba(220, 53, 69, 0.1); color: #dc3545; border-left: 4px solid #dc3545; }
 
 footer {
   text-align: center; padding: 40px; color: var(--text-muted);
@@ -130,11 +175,14 @@ footer {
 @media (max-width: 768px) {
   .nav-links { display: none; }
   .hero h1 { font-size: 2rem; }
-  .challenge-box { padding: 25px; }
+  .quiz-section { padding: 20px; }
 }
 </style>
 </head>
 <body>
+
+<!-- BOTÓN DÍA / NOCHE -->
+<button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">🌙</button>
 
 <nav>
   <div class="nav-inner">
@@ -143,7 +191,7 @@ footer {
       <a href="#intro">Intro</a>
       <a href="#festival">Festival</a>
       <a href="#experience">Experience</a>
-      <a href="#challenge">Challenge</a>
+      <a href="#challenge">Quiz</a>
     </div>
   </div>
 </nav>
@@ -153,16 +201,12 @@ footer {
   <section id="intro" class="hero">
     <h1>The Spring Festival</h1>
     <p>This is <strong>an</strong> important tradition in China. It is <strong>a</strong> very colorful celebration with dragons and red lanterns.</p>
-    <!-- IMAGEN 1: DRAGÓN -->
     <img src="1dragon.jpg" alt="Spring Festival Dragon" class="hero-image">
-    <div class="grammar-box" style="max-width: 600px; margin: 20px auto 0; text-align: left;">
-      <strong>Grammar Focus:</strong> Articles (a, an, the)
-    </div>
   </section>
 
   <h2 class="section-title">Explore the Traditions</h2>
 
-  <!-- ACORDEÓN 1: PREPARACIÓN -->
+  <!-- ACORDEÓN 1 -->
   <div class="accordion">
     <div class="accordion-header">
       <h3>1. The Festival Preparation</h3>
@@ -170,17 +214,13 @@ footer {
     </div>
     <div class="accordion-content">
       <div class="accordion-inner">
-        <!-- IMAGEN 2: PREPARACIÓN -->
         <img src="2preparacion.jpg" alt="Preparation" class="section-img">
         <p>Before the festival, <span class="highlight">everyone</span> cleans the house to remove bad luck. <span class="highlight">Someone</span> puts red decorations and lanterns on the doors. <span class="highlight">Everyone</span> wears new clothes, usually in red.</p>
-        <div class="grammar-box">
-          <strong>Grammar Focus:</strong> Indefinite Pronouns (everyone, someone, nobody).
-        </div>
       </div>
     </div>
   </div>
 
-  <!-- ACORDEÓN 2: CENA / TRADICIONES -->
+  <!-- ACORDEÓN 2 -->
   <div class="accordion">
     <div class="accordion-header">
       <h3>2. Culture and Traditions</h3>
@@ -188,18 +228,14 @@ footer {
     </div>
     <div class="accordion-content">
       <div class="accordion-inner">
-        <!-- IMAGEN 3: FESTIVAL/CENA -->
         <img src="3festival.jpg" alt="Family Dinner" class="section-img">
         <p>On New Year's Eve, families prepare a big dinner. <span class="highlight">Nobody</span> sleeps early because they stay up to watch fireworks and give red envelopes with money to children. Even if they are tired, they <span class="highlight">work through</span> the night.</p>
         <p>People celebrate it with their families every year. A family is a group <span class="highlight">who</span> supports you. This dinner is an event <span class="highlight">that</span> brings people together.</p>
-        <div class="grammar-box">
-          <strong>Grammar Focus:</strong> Phrasal Verbs (work through) & Defining Relative Clauses (who, that).
-        </div>
       </div>
     </div>
   </div>
 
-  <!-- ACORDEÓN 3: EXPERIENCIA -->
+  <!-- ACORDEÓN 3 -->
   <div class="accordion">
     <div class="accordion-header">
       <h3>3. My Experience</h3>
@@ -207,21 +243,77 @@ footer {
     </div>
     <div class="accordion-content">
       <div class="accordion-inner">
-        <!-- IMAGEN 4: MAESTRO -->
         <img src="4maestro.jpg" alt="Experience" class="section-img">
         <p>I want to share my experience. I <span class="highlight">had never understood</span> why red is so important in China. Chinese people <span class="highlight">had celebrated</span> this festival for thousands of years before it became famous worldwide.</p>
-        <div class="grammar-box">
-          <strong>Grammar Focus:</strong> Past Perfect (had + past participle).
-        </div>
       </div>
     </div>
   </div>
 
-  <!-- ACTIVIDAD INTERACTIVA -->
-  <section id="challenge" class="challenge-box">
+  <!-- SECCIÓN INTERACTIVA: QUIZ -->
+  <section id="challenge" class="quiz-section">
     <h2>Ready for the Challenge?</h2>
-    <p><strong>Had you ever celebrated</strong> the Chinese New Year before today? <br> Can you think of a tradition in Colombia that brings families together like this?</p>
-    <a href="#" class="btn-challenge" onclick="alert('Great! Now share your answer with the class. 😉')">Click to Answer</a>
+    <p>Answer these 5 questions based on the presentation.</p>
+
+    <!-- PREGUNTA 1 -->
+    <div class="quiz-item">
+      <div class="question">1. Why does everyone clean the house before the festival?</div>
+      <div class="options">
+        <label class="option"><input type="radio" name="q1" value="A"> A) To prepare for the big dinner.</label>
+        <label class="option"><input type="radio" name="q1" value="B"> B) To remove bad luck.</label>
+        <label class="option"><input type="radio" name="q1" value="C"> C) Because someone visits them.</label>
+      </div>
+      <button class="btn-check" onclick="checkAnswer('q1', 'B', 'To remove bad luck.')">Check</button>
+      <div class="feedback" id="fb-q1"></div>
+    </div>
+
+    <!-- PREGUNTA 2 -->
+    <div class="quiz-item">
+      <div class="question">2. What color do people usually wear during the Spring Festival?</div>
+      <div class="options">
+        <label class="option"><input type="radio" name="q2" value="A"> A) Yellow and gold.</label>
+        <label class="option"><input type="radio" name="q2" value="B"> B) Blue and white.</label>
+        <label class="option"><input type="radio" name="q2" value="C"> C) Red.</label>
+      </div>
+      <button class="btn-check" onclick="checkAnswer('q2', 'C', 'Red is the most important color in China.')">Check</button>
+      <div class="feedback" id="fb-q2"></div>
+    </div>
+
+    <!-- PREGUNTA 3 -->
+    <div class="quiz-item">
+      <div class="question">3. What do families give to children in red envelopes?</div>
+      <div class="options">
+        <label class="option"><input type="radio" name="q3" value="A"> A) Candy and sweets.</label>
+        <label class="option"><input type="radio" name="q3" value="B"> B) Money.</label>
+        <label class="option"><input type="radio" name="q3" value="C"> C) Small toys.</label>
+      </div>
+      <button class="btn-check" onclick="checkAnswer('q3', 'B', 'They give money in red envelopes.')">Check</button>
+      <div class="feedback" id="fb-q3"></div>
+    </div>
+
+    <!-- PREGUNTA 4 -->
+    <div class="quiz-item">
+      <div class="question">4. According to the blog, a family is a group...</div>
+      <div class="options">
+        <label class="option"><input type="radio" name="q4" value="A"> A) who supports you.</label>
+        <label class="option"><input type="radio" name="q4" value="B"> B) which lives far away.</label>
+        <label class="option"><input type="radio" name="q4" value="C"> C) that prepares food.</label>
+      </div>
+      <button class="btn-check" onclick="checkAnswer('q4', 'A', 'A family is a group who supports you.')">Check</button>
+      <div class="feedback" id="fb-q4"></div>
+    </div>
+
+    <!-- PREGUNTA 5 -->
+    <div class="quiz-item">
+      <div class="question">5. What did the author realize about the festival?</div>
+      <div class="options">
+        <label class="option"><input type="radio" name="q5" value="A"> A) That it is a new tradition.</label>
+        <label class="option"><input type="radio" name="q5" value="B"> B) That people had celebrated it for thousands of years.</label>
+        <label class="option"><input type="radio" name="q5" value="C"> C) That nobody likes fireworks.</label>
+      </div>
+      <button class="btn-check" onclick="checkAnswer('q5', 'B', 'Chinese people had celebrated it for thousands of years.')">Check</button>
+      <div class="feedback" id="fb-q5"></div>
+    </div>
+
   </section>
 
 </main>
@@ -230,22 +322,34 @@ footer {
   <p>Created for the Culture Swap Challenge &copy; 2026</p>
 </footer>
 
-<!-- SCRIPTS PARA EL ACORDEÓN -->
+<!-- SCRIPTS -->
 <script>
-  const accordions = document.querySelectorAll('.accordion-header');
+  // 1. Lógica del Botón Día/Noche
+  const themeToggle = document.getElementById('themeToggle');
+  const htmlElement = document.documentElement;
 
+  themeToggle.addEventListener('click', () => {
+    if (htmlElement.getAttribute('data-theme') === 'dark') {
+      htmlElement.removeAttribute('data-theme');
+      themeToggle.textContent = '🌙';
+    } else {
+      htmlElement.setAttribute('data-theme', 'dark');
+      themeToggle.textContent = '☀️';
+    }
+  });
+
+  // 2. Lógica del Acordeón
+  const accordions = document.querySelectorAll('.accordion-header');
   accordions.forEach(acc => {
     acc.addEventListener('click', function() {
       const parent = this.parentElement;
       const content = parent.querySelector('.accordion-content');
-      
       document.querySelectorAll('.accordion').forEach(item => {
         if (item !== parent) {
           item.classList.remove('active');
           item.querySelector('.accordion-content').style.maxHeight = null;
         }
       });
-
       parent.classList.toggle('active');
       if (content.style.maxHeight) {
         content.style.maxHeight = null;
@@ -254,6 +358,35 @@ footer {
       }
     });
   });
+
+  // 3. Lógica del Quiz (Validar respuestas)
+  function checkAnswer(questionName, correctAnswer, explanation) {
+    const options = document.getElementsByName(questionName);
+    let selectedValue = null;
+
+    for (const option of options) {
+      if (option.checked) {
+        selectedValue = option.value;
+        break;
+      }
+    }
+
+    const feedbackDiv = document.getElementById('fb-' + questionName);
+
+    if (!selectedValue) {
+      feedbackDiv.className = 'feedback incorrect';
+      feedbackDiv.innerHTML = 'Please select an option first.';
+      return;
+    }
+
+    if (selectedValue === correctAnswer) {
+      feedbackDiv.className = 'feedback correct';
+      feedbackDiv.innerHTML = '✅ Correct! ' + explanation;
+    } else {
+      feedbackDiv.className = 'feedback incorrect';
+      feedbackDiv.innerHTML = '❌ Incorrect. The correct answer is: ' + correctAnswer + ') ' + explanation;
+    }
+  }
 </script>
 
 </body>
