@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Culture Swap Challenge - Chinese Spring Festival</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Lora:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-color: #f7f4ed; 
+  --text-main: #2c2c2c;
+  --text-muted: #5a5a5a;
+  --accent-red: #b82323; 
+  --accent-dark: #1a1a1a;
+  --card-bg: #ffffff;
+  --border-color: #e0dcd1;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background-color: var(--bg-color);
+  background-image: url("https://www.transparenttextures.com/patterns/rice-paper.png"); 
+  color: var(--text-main);
+  font-family: 'Lora', serif;
+  line-height: 1.7;
+}
+
+nav {
+  position: fixed; top: 0; width: 100%; z-index: 100;
+  background: rgba(247, 244, 237, 0.95);
+  border-bottom: 1px solid var(--border-color);
+  backdrop-filter: blur(10px);
+}
+.nav-inner {
+  max-width: 1000px; margin: 0 auto; padding: 15px 20px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.brand {
+  font-family: 'Playfair Display', serif; font-weight: 800; font-size: 1.2rem;
+  color: var(--accent-dark); letter-spacing: 1px;
+}
+.brand span { color: var(--accent-red); }
+.nav-links a {
+  text-decoration: none; color: var(--text-main); font-family: 'Inter', sans-serif;
+  font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
+  margin-left: 20px; transition: color 0.3s;
+}
+.nav-links a:hover { color: var(--accent-red); }
+
+main { max-width: 900px; margin: 100px auto 50px; padding: 0 20px; }
+
+.hero { text-align: center; margin-bottom: 60px; }
+.hero h1 {
+  font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 5vw, 4rem);
+  color: var(--accent-dark); line-height: 1.1; margin-bottom: 15px;
+}
+.hero p {
+  font-size: 1.1rem; color: var(--text-muted); max-width: 600px; margin: 0 auto 30px;
+}
+.hero-image {
+  width: 100%; border-radius: 12px; box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+  border: 8px solid var(--card-bg);
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif; font-size: 2rem; font-style: italic;
+  color: var(--accent-red); text-align: center; margin: 60px 0 30px;
+}
+.section-title::after {
+  content: "❦"; display: block; font-size: 1.2rem; color: var(--accent-dark); margin-top: 10px;
+}
+
+.accordion {
+  background: var(--card-bg); border: 1px solid var(--border-color);
+  border-radius: 8px; margin-bottom: 20px; overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.03); transition: all 0.3s ease;
+}
+.accordion:hover { box-shadow: 0 8px 25px rgba(0,0,0,0.08); }
+
+.accordion-header {
+  padding: 20px 25px; cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+  background: var(--card-bg); transition: background 0.3s;
+}
+.accordion-header h3 {
+  font-family: 'Inter', sans-serif; font-size: 1.1rem; font-weight: 600; color: var(--accent-dark);
+}
+.accordion-header .icon { font-size: 1.5rem; color: var(--accent-red); transition: transform 0.3s; }
+.accordion.active .accordion-header .icon { transform: rotate(45deg); }
+
+.accordion-content {
+  max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out;
+  background: #faf9f6; border-top: 1px solid transparent;
+}
+.accordion.active .accordion-content { border-top-color: var(--border-color); }
+.accordion-inner { padding: 25px; }
+
+.highlight { color: var(--accent-red); font-weight: 600; font-style: italic; }
+.grammar-box {
+  background: rgba(184, 35, 35, 0.05); border-left: 4px solid var(--accent-red);
+  padding: 15px; margin-top: 15px; border-radius: 0 8px 8px 0; font-size: 0.9rem;
+}
+.grammar-box strong { color: var(--accent-red); font-family: 'Inter', sans-serif; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px; }
+
+.section-img {
+  width: 100%; border-radius: 8px; margin-bottom: 20px; object-fit: cover; max-height: 400px;
+}
+
+.challenge-box {
+  background: var(--accent-dark); color: #fff; padding: 40px; border-radius: 12px;
+  text-align: center; margin-top: 60px;
+}
+.challenge-box h2 { font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 15px; color: #ffd700; }
+.challenge-box p { font-size: 1.1rem; margin-bottom: 25px; }
+.btn-challenge {
+  display: inline-block; background: var(--accent-red); color: #fff; text-decoration: none;
+  padding: 12px 30px; border-radius: 30px; font-family: 'Inter', sans-serif; font-weight: 600;
+  transition: background 0.3s, transform 0.3s;
+}
+.btn-challenge:hover { background: #8a1a1a; transform: translateY(-3px); }
+
+footer {
+  text-align: center; padding: 40px; color: var(--text-muted);
+  font-family: 'Inter', sans-serif; font-size: 0.8rem; border-top: 1px solid var(--border-color);
+  margin-top: 60px;
+}
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .hero h1 { font-size: 2rem; }
+  .challenge-box { padding: 25px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="brand">CULTURE <span>SWAP</span></div>
+    <div class="nav-links">
+      <a href="#intro">Intro</a>
+      <a href="#festival">Festival</a>
+      <a href="#experience">Experience</a>
+      <a href="#challenge">Challenge</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <!-- PORTADA -->
+  <section id="intro" class="hero">
+    <h1>The Spring Festival</h1>
+    <p>This is <strong>an</strong> important tradition in China. It is <strong>a</strong> very colorful celebration with dragons and red lanterns.</p>
+    <!-- IMAGEN 1: DRAGÓN -->
+    <img src="1dragon.jpg" alt="Spring Festival Dragon" class="hero-image">
+    <div class="grammar-box" style="max-width: 600px; margin: 20px auto 0; text-align: left;">
+      <strong>Grammar Focus:</strong> Articles (a, an, the)
+    </div>
+  </section>
+
+  <h2 class="section-title">Explore the Traditions</h2>
+
+  <!-- ACORDEÓN 1: PREPARACIÓN -->
+  <div class="accordion">
+    <div class="accordion-header">
+      <h3>1. The Festival Preparation</h3>
+      <div class="icon">+</div>
+    </div>
+    <div class="accordion-content">
+      <div class="accordion-inner">
+        <!-- IMAGEN 2: PREPARACIÓN -->
+        <img src="2preparacion.jpg" alt="Preparation" class="section-img">
+        <p>Before the festival, <span class="highlight">everyone</span> cleans the house to remove bad luck. <span class="highlight">Someone</span> puts red decorations and lanterns on the doors. <span class="highlight">Everyone</span> wears new clothes, usually in red.</p>
+        <div class="grammar-box">
+          <strong>Grammar Focus:</strong> Indefinite Pronouns (everyone, someone, nobody).
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACORDEÓN 2: CENA / TRADICIONES -->
+  <div class="accordion">
+    <div class="accordion-header">
+      <h3>2. Culture and Traditions</h3>
+      <div class="icon">+</div>
+    </div>
+    <div class="accordion-content">
+      <div class="accordion-inner">
+        <!-- IMAGEN 3: FESTIVAL/CENA -->
+        <img src="3festival.jpg" alt="Family Dinner" class="section-img">
+        <p>On New Year's Eve, families prepare a big dinner. <span class="highlight">Nobody</span> sleeps early because they stay up to watch fireworks and give red envelopes with money to children. Even if they are tired, they <span class="highlight">work through</span> the night.</p>
+        <p>People celebrate it with their families every year. A family is a group <span class="highlight">who</span> supports you. This dinner is an event <span class="highlight">that</span> brings people together.</p>
+        <div class="grammar-box">
+          <strong>Grammar Focus:</strong> Phrasal Verbs (work through) & Defining Relative Clauses (who, that).
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACORDEÓN 3: EXPERIENCIA -->
+  <div class="accordion">
+    <div class="accordion-header">
+      <h3>3. My Experience</h3>
+      <div class="icon">+</div>
+    </div>
+    <div class="accordion-content">
+      <div class="accordion-inner">
+        <!-- IMAGEN 4: MAESTRO -->
+        <img src="4maestro.jpg" alt="Experience" class="section-img">
+        <p>I want to share my experience. I <span class="highlight">had never understood</span> why red is so important in China. Chinese people <span class="highlight">had celebrated</span> this festival for thousands of years before it became famous worldwide.</p>
+        <div class="grammar-box">
+          <strong>Grammar Focus:</strong> Past Perfect (had + past participle).
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACTIVIDAD INTERACTIVA -->
+  <section id="challenge" class="challenge-box">
+    <h2>Ready for the Challenge?</h2>
+    <p><strong>Had you ever celebrated</strong> the Chinese New Year before today? <br> Can you think of a tradition in Colombia that brings families together like this?</p>
+    <a href="#" class="btn-challenge" onclick="alert('Great! Now share your answer with the class. 😉')">Click to Answer</a>
+  </section>
+
+</main>
+
+<footer>
+  <p>Created for the Culture Swap Challenge &copy; 2026</p>
+</footer>
+
+<!-- SCRIPTS PARA EL ACORDEÓN -->
+<script>
+  const accordions = document.querySelectorAll('.accordion-header');
+
+  accordions.forEach(acc => {
+    acc.addEventListener('click', function() {
+      const parent = this.parentElement;
+      const content = parent.querySelector('.accordion-content');
+      
+      document.querySelectorAll('.accordion').forEach(item => {
+        if (item !== parent) {
+          item.classList.remove('active');
+          item.querySelector('.accordion-content').style.maxHeight = null;
+        }
+      });
+
+      parent.classList.toggle('active');
+      if (content.style.maxHeight) {
+        content.style.maxHeight = null;
+      } else {
+        content.style.maxHeight = content.scrollHeight + "px";
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
