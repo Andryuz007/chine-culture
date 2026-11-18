@@ -10,7 +10,7 @@
 <style>
 /* VARIABLES DE COLOR - MODO DÍA Y NOCHE */
 :root {
-  --bg-color: #f7f4ed; 
+  --bg-color: #e6f0fa; /* Un azul muy claro para el día lluvioso */
   --text-main: #2c2c2c;
   --text-muted: #5a5a5a;
   --accent-red: #b82323; 
@@ -18,8 +18,18 @@
   --accent-dark: #1a1a1a;
   --card-bg: #ffffff;
   --border-color: #e0dcd1;
-  --nav-bg: rgba(247, 244, 237, 0.95);
+  --nav-bg: rgba(230, 240, 250, 0.95);
   --shadow: 0 15px 30px rgba(0,0,0,0.1);
+  --title-color: #e91e63; /* ROSADO PARA EL DÍA */
+  
+  /* Efecto de lluvia */
+  --bg-pattern: repeating-linear-gradient(
+    10deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0) 10px,
+    rgba(180, 200, 220, 0.4) 10px,
+    rgba(180, 200, 220, 0.4) 12px
+  );
 }
 
 [data-theme="dark"] {
@@ -33,16 +43,27 @@
   --border-color: #333333;
   --nav-bg: rgba(10, 10, 10, 0.95);
   --shadow: 0 15px 30px rgba(255,255,255,0.05);
+  --title-color: #ff80ab; /* ROSADO BRILLANTE PARA LA NOCHE */
+  
+  /* Efecto de luz de luna (resplandor radial) */
+  --bg-pattern: radial-gradient(
+    circle at 50% 10%, 
+    rgba(255, 255, 255, 0.15) 0%, 
+    rgba(255, 255, 255, 0.05) 20%, 
+    rgba(0, 0, 0, 0) 50%
+  );
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
   background-color: var(--bg-color);
+  background-image: var(--bg-pattern); /* Aplica la lluvia o la luna */
+  background-attachment: fixed;
   color: var(--text-main);
   font-family: 'Lora', serif;
   line-height: 1.7;
-  transition: background-color 0.4s, color 0.4s;
+  transition: background-color 0.4s, color 0.4s, background-image 0.6s ease-in-out;
 }
 
 /* BOTÓN DÍA / NOCHE */
@@ -87,7 +108,10 @@ main { max-width: 900px; margin: 100px auto 50px; padding: 0 20px; }
 .hero { text-align: center; margin-bottom: 60px; }
 .hero h1 {
   font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 5vw, 4rem);
-  color: var(--accent-dark); line-height: 1.1; margin-bottom: 15px;
+  color: var(--title-color); /* AQUÍ SE APLICA EL COLOR ROSADO */
+  line-height: 1.1; margin-bottom: 15px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.1); /* Un poco de sombra para que resalte */
+  transition: color 0.4s; /* Transición suave del color */
 }
 .hero p { font-size: 1.1rem; color: var(--text-muted); max-width: 600px; margin: 0 auto 30px; }
 .hero-image {
@@ -337,9 +361,8 @@ footer {
 
   </section>
 
-  <!-- NUEVA SECCIÓN: GRACIAS Y MEME -->
+  <!-- SECCIÓN FINAL: GRACIAS Y MEME -->
   <section class="thank-you-section">
-    <!-- GUION: "And that is all for my presentation. Thank you very much for your attention! I hope you learned something new today. Here is a funny meme for you." -->
     <h2>Thank you!</h2>
     <img src="meme.jpg" alt="Funny meme" class="meme-image">
   </section>
