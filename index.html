@@ -10,28 +10,27 @@
 <style>
 /* VARIABLES DE COLOR - MODO DÍA Y NOCHE (PASTEL) */
 :root {
-  --bg-color: #fdfbf7; /* Blanco crema muy suave */
+  --bg-color: #fdfbf7; 
   --text-main: #2c2c2c;
   --text-muted: #5a5a5a;
   --accent-red: #b82323; 
   --accent-gold: #d4af37;
   --accent-dark: #1a1a1a;
-  --card-bg: rgba(255, 255, 255, 0.85); /* Tarjetas semi-transparentes */
+  --card-bg: rgba(255, 255, 255, 0.85); 
   --border-color: #f0e6d2;
   --nav-bg: rgba(253, 251, 247, 0.9);
   --shadow: 0 15px 30px rgba(0,0,0,0.05);
-  --title-color: #e91e63; /* ROSADO PASTEL */
+  --title-color: #e91e63; 
   
-  /* Fondo Día: Llovizna pastel difuminada */
   --bg-pattern: radial-gradient(circle at 15% 50%, rgba(200, 220, 255, 0.4), transparent 25%),
                 radial-gradient(circle at 85% 30%, rgba(255, 200, 220, 0.4), transparent 25%),
                 radial-gradient(circle at 50% 80%, rgba(200, 255, 220, 0.3), transparent 25%);
   
-  --watermark-color: rgba(0, 0, 0, 0.03); /* Marca de agua casi invisible */
+  --watermark-color: rgba(0, 0, 0, 0.03); 
 }
 
 [data-theme="dark"] {
-  --bg-color: #12121a; /* Azul noche muy oscuro */
+  --bg-color: #12121a; 
   --text-main: #e0e0e0;
   --text-muted: #a0a0a0;
   --accent-red: #ff6b6b; 
@@ -41,9 +40,8 @@
   --border-color: #333344;
   --nav-bg: rgba(18, 18, 26, 0.9);
   --shadow: 0 15px 30px rgba(0,0,0,0.4);
-  --title-color: #ff8fab; /* ROSADO BRILLANTE NOCHE */
+  --title-color: #ff8fab; 
   
-  /* Fondo Noche: Luz de luna pastel */
   --bg-pattern: radial-gradient(circle at 50% -10%, rgba(180, 200, 255, 0.15) 0%, transparent 60%);
   
   --watermark-color: rgba(255, 255, 255, 0.03);
@@ -65,7 +63,7 @@ body {
 
 /* MARCAS DE AGUA CULTURALES */
 body::before, body::after {
-  content: "春"; /* Primavera */
+  content: "春"; 
   position: fixed;
   font-family: 'Playfair Display', serif;
   font-size: 40vw;
@@ -76,7 +74,7 @@ body::before, body::after {
 }
 body::before { top: -10vh; left: -10vw; }
 body::after { 
-  content: "福"; /* Fortuna/Bendición */
+  content: "福"; 
   bottom: -10vh; right: -10vw; 
 }
 
@@ -133,7 +131,7 @@ main { max-width: 900px; margin: 100px auto 50px; padding: 0 20px; position: rel
   border: 8px solid var(--card-bg); transition: border 0.4s;
 }
 
-/* NUEVO: SEPARADOR DECORATIVO DE LINTERNAS */
+/* SEPARADOR DECORATIVO DE LINTERNAS */
 .divider {
   text-align: center;
   margin: 40px 0;
@@ -156,7 +154,7 @@ main { max-width: 900px; margin: 100px auto 50px; padding: 0 20px; position: rel
   background: var(--card-bg); border: 1px solid var(--border-color);
   border-radius: 8px; margin-bottom: 20px; overflow: hidden;
   box-shadow: 0 4px 15px rgba(0,0,0,0.03); transition: all 0.4s ease;
-  backdrop-filter: blur(5px); /* Efecto cristal */
+  backdrop-filter: blur(5px); 
 }
 .accordion:hover { box-shadow: var(--shadow); border-color: var(--accent-gold); }
 .accordion-header {
@@ -175,6 +173,24 @@ main { max-width: 900px; margin: 100px auto 50px; padding: 0 20px; position: rel
 .accordion-inner { padding: 25px; }
 
 .highlight { color: var(--accent-red); font-weight: 600; font-style: italic; }
+
+/* Estilo para listas dentro del acordeón */
+.accordion-inner ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+.accordion-inner li {
+  margin-bottom: 10px;
+  font-size: 1.05rem;
+}
+.accordion-inner li::before {
+  content: "•";
+  color: var(--accent-gold);
+  font-weight: bold;
+  display: inline-block; 
+  width: 1em;
+  margin-left: -1em;
+}
 
 .section-img { width: 100%; border-radius: 8px; margin-bottom: 20px; object-fit: cover; max-height: 400px; }
 
@@ -248,13 +264,12 @@ footer {
   .hero h1 { font-size: 2rem; }
   .quiz-section { padding: 20px; }
   .thank-you-section h2 { font-size: 2rem; }
-  body::before, body::after { font-size: 60vw; } /* Ajuste de marcas de agua en celular */
+  body::before, body::after { font-size: 60vw; } 
 }
 </style>
 </head>
 <body>
 
-<!-- BOTÓN DÍA / NOCHE -->
 <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">🌙</button>
 
 <nav>
@@ -277,7 +292,6 @@ footer {
     <img src="1dragon.jpg" alt="Spring Festival Dragon" class="hero-image">
   </section>
 
-  <!-- Separador decorativo -->
   <div class="divider">🏮 🏮 🏮</div>
 
   <h2 class="section-title">Explore the Traditions</h2>
@@ -291,7 +305,12 @@ footer {
     <div class="accordion-content">
       <div class="accordion-inner">
         <img src="2preparacion.jpg" alt="Preparation" class="section-img">
-        <p>Before the festival, <span class="highlight">everyone</span> cleans the house to remove bad luck. <span class="highlight">Someone</span> puts red decorations on the doors. <span class="highlight">Everyone</span> wears new clothes, usually in red.</p>
+        <!-- Texto acortado a viñetas -->
+        <ul>
+          <li><span class="highlight">Everyone</span> cleans the house (remove bad luck).</li>
+          <li><span class="highlight">Someone</span> puts red decorations on doors.</li>
+          <li><span class="highlight">Everyone</span> wears new red clothes.</li>
+        </ul>
       </div>
     </div>
   </div>
@@ -305,7 +324,13 @@ footer {
     <div class="accordion-content">
       <div class="accordion-inner">
         <img src="3festival.jpg" alt="Family Dinner" class="section-img">
-        <p>On New Year's Eve, families prepare a big dinner. <span class="highlight">Nobody</span> sleeps early because they <span class="highlight">stay up</span> to watch fireworks and give red envelopes with money to children.</p>
+        <!-- Texto acortado a viñetas -->
+        <ul>
+          <li>New Year's Eve: Big family dinner.</li>
+          <li><span class="highlight">Nobody</span> sleeps early. They <span class="highlight">stay up</span> for fireworks.</li>
+          <li>Children receive money in red envelopes.</li>
+          <li>A family is a group <span class="highlight">who</span> supports you. This event <span class="highlight">that</span> brings people together. They enjoy <span class="highlight">sharing</span> food.</li>
+        </ul>
       </div>
     </div>
   </div>
@@ -313,18 +338,23 @@ footer {
   <!-- ACORDEÓN 3 -->
   <div class="accordion">
     <div class="accordion-header">
-      <h3>3. My Experience</h3>
+      <h3>3. My Research Experience</h3>
       <div class="icon">+</div>
     </div>
     <div class="accordion-content">
       <div class="accordion-inner">
-        <img src="4maestro.jpg" alt="Experience" class="section-img">
-        <p>The community <span class="highlight">started</span> this tradition many years ago. I <span class="highlight">visited</span> China and I <span class="highlight">had never understood</span> why red is so important until I saw it. Chinese people <span class="highlight">had celebrated</span> this festival for centuries before it became famous. It is important <span class="highlight">to respect</span> these customs.</p>
+        <img src="4maestro.jpg" alt="Research" class="section-img">
+        <!-- Texto acortado y adaptado a la realidad (investigación) -->
+        <ul>
+          <li>The community <span class="highlight">started</span> this tradition centuries ago.</li>
+          <li>During my research, I <span class="highlight">had never understood</span> the importance of red until I read about it.</li>
+          <li>I learned they <span class="highlight">had celebrated</span> it long before it became global.</li>
+          <li>It is important <span class="highlight">to respect</span> these customs.</li>
+        </ul>
       </div>
     </div>
   </div>
 
-  <!-- Separador decorativo -->
   <div class="divider">🏮 🏮 🏮</div>
 
   <!-- SECCIÓN INTERACTIVA: QUIZ -->
@@ -394,7 +424,6 @@ footer {
 
   </section>
 
-  <!-- Separador decorativo -->
   <div class="divider">🏮 🏮 🏮</div>
 
   <!-- SECCIÓN FINAL: GRACIAS Y MEME -->
@@ -409,7 +438,6 @@ footer {
   <p>Created for the Culture Swap Challenge &copy; 2026</p>
 </footer>
 
-<!-- SCRIPTS -->
 <script>
   // 1. Lógica del Botón Día/Noche
   const themeToggle = document.getElementById('themeToggle');
