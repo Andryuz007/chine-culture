@@ -126,11 +126,6 @@ main { max-width: 900px; margin: 100px auto 50px; padding: 0 20px; }
 .accordion-inner { padding: 25px; }
 
 .highlight { color: var(--accent-red); font-weight: 600; font-style: italic; }
-.grammar-box {
-  background: rgba(184, 35, 35, 0.05); border-left: 4px solid var(--accent-red);
-  padding: 15px; margin-top: 15px; border-radius: 0 8px 8px 0; font-size: 0.9rem;
-}
-.grammar-box strong { color: var(--accent-red); font-family: 'Inter', sans-serif; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px; }
 
 .section-img { width: 100%; border-radius: 8px; margin-bottom: 20px; object-fit: cover; max-height: 400px; }
 
@@ -166,6 +161,31 @@ main { max-width: 900px; margin: 100px auto 50px; padding: 0 20px; }
 .feedback.correct { display: block; background: rgba(40, 167, 69, 0.1); color: #28a745; border-left: 4px solid #28a745; }
 .feedback.incorrect { display: block; background: rgba(220, 53, 69, 0.1); color: #dc3545; border-left: 4px solid #dc3545; }
 
+/* NUEVA SECCIÓN: MENSAJE DE GRACIAS Y MEME */
+.thank-you-section {
+  text-align: center;
+  margin-top: 80px;
+  padding: 40px 20px;
+  background: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border-color);
+}
+.thank-you-section h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  color: var(--accent-red);
+  margin-bottom: 20px;
+  font-style: italic;
+}
+.meme-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  border: 5px solid var(--border-color);
+}
+
 footer {
   text-align: center; padding: 40px; color: var(--text-muted);
   font-family: 'Inter', sans-serif; font-size: 0.8rem; border-top: 1px solid var(--border-color);
@@ -176,6 +196,7 @@ footer {
   .nav-links { display: none; }
   .hero h1 { font-size: 2rem; }
   .quiz-section { padding: 20px; }
+  .thank-you-section h2 { font-size: 2rem; }
 }
 </style>
 </head>
@@ -199,7 +220,6 @@ footer {
 <main>
   <!-- PORTADA -->
   <section id="intro" class="hero">
-    <!-- GUION: "Hello everyone. Today I want to talk about the Spring Festival, the most important tradition in China. As you can see, it is a very colorful celebration with dragons and red lanterns." -->
     <h1>The Spring Festival</h1>
     <p>This is <strong>an</strong> important tradition in China. It is <strong>an extremely</strong> colorful celebration with dragons and red lanterns.</p>
     <img src="1dragon.jpg" alt="Spring Festival Dragon" class="hero-image">
@@ -215,7 +235,6 @@ footer {
     </div>
     <div class="accordion-content">
       <div class="accordion-inner">
-        <!-- GUION: "First, let's talk about preparation. Before the festival, everyone cleans the house to remove bad luck. Someone puts red decorations on the doors, and everyone wears new red clothes." -->
         <img src="2preparacion.jpg" alt="Preparation" class="section-img">
         <p>Before the festival, <span class="highlight">everyone</span> cleans the house to remove bad luck. <span class="highlight">Someone</span> puts red decorations on the doors. <span class="highlight">Everyone</span> wears new clothes, usually in red.</p>
       </div>
@@ -230,7 +249,6 @@ footer {
     </div>
     <div class="accordion-content">
       <div class="accordion-inner">
-        <!-- GUION: "On New Year's Eve, families prepare a big dinner. Nobody sleeps early because they stay up to watch fireworks and give money to children in red envelopes. A family is a group who supports you, and this dinner is an event that brings people together. They enjoy sharing this special moment." -->
         <img src="3festival.jpg" alt="Family Dinner" class="section-img">
         <p>On New Year's Eve, families prepare a big dinner. <span class="highlight">Nobody</span> sleeps early because they <span class="highlight">stay up</span> to watch fireworks and give red envelopes with money to children.</p>
         <p>People celebrate it with their families every year. A family is a group <span class="highlight">who</span> supports you. This dinner is an event <span class="highlight">that</span> brings people together. People enjoy <span class="highlight">sharing</span> traditional food.</p>
@@ -246,7 +264,6 @@ footer {
     </div>
     <div class="accordion-content">
       <div class="accordion-inner">
-        <!-- GUION: "Now, let me share my experience. The community started this tradition thousands of years ago. I visited China last year. I had never understood why red is so important until I saw it. Chinese people had celebrated this festival for centuries before it became famous worldwide. It is important to respect these customs." -->
         <img src="4maestro.jpg" alt="Experience" class="section-img">
         <p>The community <span class="highlight">started</span> this tradition many years ago. I <span class="highlight">visited</span> China and I <span class="highlight">had never understood</span> why red is so important until I saw it. Chinese people <span class="highlight">had celebrated</span> this festival for centuries before it became famous. It is important <span class="highlight">to respect</span> these customs.</p>
       </div>
@@ -255,7 +272,6 @@ footer {
 
   <!-- SECCIÓN INTERACTIVA: QUIZ -->
   <section id="challenge" class="quiz-section">
-    <!-- GUION: "Now, let's play a game! I have 5 questions for you. Are you ready for the challenge?" -->
     <h2>Ready for the Challenge?</h2>
     <p>Answer these 5 questions based on the presentation.</p>
 
@@ -319,6 +335,13 @@ footer {
       <div class="feedback" id="fb-q5"></div>
     </div>
 
+  </section>
+
+  <!-- NUEVA SECCIÓN: GRACIAS Y MEME -->
+  <section class="thank-you-section">
+    <!-- GUION: "And that is all for my presentation. Thank you very much for your attention! I hope you learned something new today. Here is a funny meme for you." -->
+    <h2>Thank you!</h2>
+    <img src="meme.jpg" alt="Funny meme" class="meme-image">
   </section>
 
 </main>
