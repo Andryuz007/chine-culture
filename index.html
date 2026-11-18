@@ -8,62 +8,76 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Lora:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
-/* VARIABLES DE COLOR - MODO DÍA Y NOCHE */
+/* VARIABLES DE COLOR - MODO DÍA Y NOCHE (PASTEL) */
 :root {
-  --bg-color: #e6f0fa; /* Un azul muy claro para el día lluvioso */
+  --bg-color: #fdfbf7; /* Blanco crema muy suave */
   --text-main: #2c2c2c;
   --text-muted: #5a5a5a;
   --accent-red: #b82323; 
   --accent-gold: #d4af37;
   --accent-dark: #1a1a1a;
-  --card-bg: #ffffff;
-  --border-color: #e0dcd1;
-  --nav-bg: rgba(230, 240, 250, 0.95);
-  --shadow: 0 15px 30px rgba(0,0,0,0.1);
-  --title-color: #e91e63; /* ROSADO PARA EL DÍA */
+  --card-bg: rgba(255, 255, 255, 0.85); /* Tarjetas semi-transparentes */
+  --border-color: #f0e6d2;
+  --nav-bg: rgba(253, 251, 247, 0.9);
+  --shadow: 0 15px 30px rgba(0,0,0,0.05);
+  --title-color: #e91e63; /* ROSADO PASTEL */
   
-  /* Efecto de lluvia */
-  --bg-pattern: repeating-linear-gradient(
-    10deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0) 10px,
-    rgba(180, 200, 220, 0.4) 10px,
-    rgba(180, 200, 220, 0.4) 12px
-  );
+  /* Fondo Día: Llovizna pastel difuminada */
+  --bg-pattern: radial-gradient(circle at 15% 50%, rgba(200, 220, 255, 0.4), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(255, 200, 220, 0.4), transparent 25%),
+                radial-gradient(circle at 50% 80%, rgba(200, 255, 220, 0.3), transparent 25%);
+  
+  --watermark-color: rgba(0, 0, 0, 0.03); /* Marca de agua casi invisible */
 }
 
 [data-theme="dark"] {
-  --bg-color: #0a0a0a;
+  --bg-color: #12121a; /* Azul noche muy oscuro */
   --text-main: #e0e0e0;
   --text-muted: #a0a0a0;
-  --accent-red: #ff3333; 
-  --accent-gold: #ffcc00;
+  --accent-red: #ff6b6b; 
+  --accent-gold: #ffd166;
   --accent-dark: #ffffff;
-  --card-bg: #151515;
-  --border-color: #333333;
-  --nav-bg: rgba(10, 10, 10, 0.95);
-  --shadow: 0 15px 30px rgba(255,255,255,0.05);
-  --title-color: #ff80ab; /* ROSADO BRILLANTE PARA LA NOCHE */
+  --card-bg: rgba(30, 30, 40, 0.85);
+  --border-color: #333344;
+  --nav-bg: rgba(18, 18, 26, 0.9);
+  --shadow: 0 15px 30px rgba(0,0,0,0.4);
+  --title-color: #ff8fab; /* ROSADO BRILLANTE NOCHE */
   
-  /* Efecto de luz de luna (resplandor radial) */
-  --bg-pattern: radial-gradient(
-    circle at 50% 10%, 
-    rgba(255, 255, 255, 0.15) 0%, 
-    rgba(255, 255, 255, 0.05) 20%, 
-    rgba(0, 0, 0, 0) 50%
-  );
+  /* Fondo Noche: Luz de luna pastel */
+  --bg-pattern: radial-gradient(circle at 50% -10%, rgba(180, 200, 255, 0.15) 0%, transparent 60%);
+  
+  --watermark-color: rgba(255, 255, 255, 0.03);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
   background-color: var(--bg-color);
-  background-image: var(--bg-pattern); /* Aplica la lluvia o la luna */
+  background-image: var(--bg-pattern);
   background-attachment: fixed;
   color: var(--text-main);
   font-family: 'Lora', serif;
   line-height: 1.7;
-  transition: background-color 0.4s, color 0.4s, background-image 0.6s ease-in-out;
+  transition: background-color 0.6s, color 0.6s, background-image 0.6s;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* MARCAS DE AGUA CULTURALES */
+body::before, body::after {
+  content: "春"; /* Primavera */
+  position: fixed;
+  font-family: 'Playfair Display', serif;
+  font-size: 40vw;
+  color: var(--watermark-color);
+  z-index: -1;
+  pointer-events: none;
+  line-height: 1;
+}
+body::before { top: -10vh; left: -10vw; }
+body::after { 
+  content: "福"; /* Fortuna/Bendición */
+  bottom: -10vh; right: -10vw; 
 }
 
 /* BOTÓN DÍA / NOCHE */
@@ -73,7 +87,7 @@ body {
   background: var(--accent-red); color: white;
   border: 2px solid var(--accent-gold); cursor: pointer;
   font-size: 1.2rem; display: grid; place-items: center;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
   transition: all 0.3s;
 }
 .theme-toggle:hover { transform: scale(1.1) rotate(15deg); }
@@ -102,21 +116,31 @@ nav {
 }
 .nav-links a:hover { color: var(--accent-red); }
 
-main { max-width: 900px; margin: 100px auto 50px; padding: 0 20px; }
+main { max-width: 900px; margin: 100px auto 50px; padding: 0 20px; position: relative; z-index: 1;}
 
 /* HERO SECTION */
 .hero { text-align: center; margin-bottom: 60px; }
 .hero h1 {
   font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 5vw, 4rem);
-  color: var(--title-color); /* AQUÍ SE APLICA EL COLOR ROSADO */
+  color: var(--title-color);
   line-height: 1.1; margin-bottom: 15px;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.1); /* Un poco de sombra para que resalte */
-  transition: color 0.4s; /* Transición suave del color */
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
+  transition: color 0.4s;
 }
 .hero p { font-size: 1.1rem; color: var(--text-muted); max-width: 600px; margin: 0 auto 30px; }
 .hero-image {
   width: 100%; border-radius: 12px; box-shadow: var(--shadow);
   border: 8px solid var(--card-bg); transition: border 0.4s;
+}
+
+/* NUEVO: SEPARADOR DECORATIVO DE LINTERNAS */
+.divider {
+  text-align: center;
+  margin: 40px 0;
+  font-size: 1.5rem;
+  letter-spacing: 15px;
+  opacity: 0.7;
+  color: var(--accent-red);
 }
 
 .section-title {
@@ -132,6 +156,7 @@ main { max-width: 900px; margin: 100px auto 50px; padding: 0 20px; }
   background: var(--card-bg); border: 1px solid var(--border-color);
   border-radius: 8px; margin-bottom: 20px; overflow: hidden;
   box-shadow: 0 4px 15px rgba(0,0,0,0.03); transition: all 0.4s ease;
+  backdrop-filter: blur(5px); /* Efecto cristal */
 }
 .accordion:hover { box-shadow: var(--shadow); border-color: var(--accent-gold); }
 .accordion-header {
@@ -143,7 +168,7 @@ main { max-width: 900px; margin: 100px auto 50px; padding: 0 20px; }
 
 .accordion-content {
   max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out;
-  background: rgba(0,0,0,0.02); border-top: 1px solid transparent;
+  background: rgba(0,0,0,0.01); border-top: 1px solid transparent;
 }
 [data-theme="dark"] .accordion-content { background: rgba(255,255,255,0.02); }
 .accordion.active .accordion-content { border-top-color: var(--border-color); }
@@ -157,6 +182,7 @@ main { max-width: 900px; margin: 100px auto 50px; padding: 0 20px; }
 .quiz-section {
   background: var(--card-bg); border: 2px solid var(--accent-red);
   border-radius: 12px; padding: 40px; margin-top: 60px; box-shadow: var(--shadow);
+  backdrop-filter: blur(5px);
 }
 .quiz-section h2 { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--accent-red); text-align: center; margin-bottom: 10px; }
 .quiz-section > p { text-align: center; color: var(--text-muted); margin-bottom: 30px; }
@@ -185,7 +211,7 @@ main { max-width: 900px; margin: 100px auto 50px; padding: 0 20px; }
 .feedback.correct { display: block; background: rgba(40, 167, 69, 0.1); color: #28a745; border-left: 4px solid #28a745; }
 .feedback.incorrect { display: block; background: rgba(220, 53, 69, 0.1); color: #dc3545; border-left: 4px solid #dc3545; }
 
-/* NUEVA SECCIÓN: MENSAJE DE GRACIAS Y MEME */
+/* SECCIÓN FINAL: MENSAJE DE GRACIAS Y MEME */
 .thank-you-section {
   text-align: center;
   margin-top: 80px;
@@ -194,6 +220,7 @@ main { max-width: 900px; margin: 100px auto 50px; padding: 0 20px; }
   border-radius: 12px;
   box-shadow: var(--shadow);
   border: 1px solid var(--border-color);
+  backdrop-filter: blur(5px);
 }
 .thank-you-section h2 {
   font-family: 'Playfair Display', serif;
@@ -221,6 +248,7 @@ footer {
   .hero h1 { font-size: 2rem; }
   .quiz-section { padding: 20px; }
   .thank-you-section h2 { font-size: 2rem; }
+  body::before, body::after { font-size: 60vw; } /* Ajuste de marcas de agua en celular */
 }
 </style>
 </head>
@@ -248,6 +276,9 @@ footer {
     <p>This is <strong>an</strong> important tradition in China. It is <strong>an extremely</strong> colorful celebration with dragons and red lanterns.</p>
     <img src="1dragon.jpg" alt="Spring Festival Dragon" class="hero-image">
   </section>
+
+  <!-- Separador decorativo -->
+  <div class="divider">🏮 🏮 🏮</div>
 
   <h2 class="section-title">Explore the Traditions</h2>
 
@@ -293,6 +324,9 @@ footer {
       </div>
     </div>
   </div>
+
+  <!-- Separador decorativo -->
+  <div class="divider">🏮 🏮 🏮</div>
 
   <!-- SECCIÓN INTERACTIVA: QUIZ -->
   <section id="challenge" class="quiz-section">
@@ -360,6 +394,9 @@ footer {
     </div>
 
   </section>
+
+  <!-- Separador decorativo -->
+  <div class="divider">🏮 🏮 🏮</div>
 
   <!-- SECCIÓN FINAL: GRACIAS Y MEME -->
   <section class="thank-you-section">
