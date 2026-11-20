@@ -194,6 +194,26 @@ main { max-width: 900px; margin: 100px auto 50px; padding: 0 20px; position: rel
 
 .section-img { width: 100%; border-radius: 8px; margin-bottom: 20px; object-fit: cover; max-height: 400px; }
 
+/* NUEVO: ESTILO PARA LAS IMÁGENES LADO A LADO (COLOMBIA) */
+.image-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+.image-grid img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+@media (max-width: 600px) {
+  .image-grid { grid-template-columns: 1fr; } /* En celular se ponen una debajo de otra */
+  .image-grid img { height: 200px; }
+}
+
+
 /* SECCIÓN DEL QUIZ INTERACTIVO */
 .quiz-section {
   background: var(--card-bg); border: 2px solid var(--accent-red);
@@ -278,7 +298,6 @@ footer {
     <div class="nav-links">
       <a href="#intro">Intro</a>
       <a href="#festival">Festival</a>
-      <a href="#experience">Experience</a>
       <a href="#challenge">Quiz</a>
     </div>
   </div>
@@ -296,7 +315,7 @@ footer {
 
   <h2 class="section-title">Explore the Traditions</h2>
 
-  <!-- ACORDEÓN 1 -->
+  <!-- ACORDEÓN 1 (China) -->
   <div class="accordion">
     <div class="accordion-header">
       <h3>1. The Festival Preparation</h3>
@@ -305,7 +324,6 @@ footer {
     <div class="accordion-content">
       <div class="accordion-inner">
         <img src="2preparacion.jpg" alt="Preparation" class="section-img">
-        <!-- Texto acortado a viñetas -->
         <ul>
           <li><span class="highlight">Everyone</span> cleans the house (remove bad luck).</li>
           <li><span class="highlight">Someone</span> puts red decorations on doors.</li>
@@ -315,7 +333,7 @@ footer {
     </div>
   </div>
 
-  <!-- ACORDEÓN 2 -->
+  <!-- ACORDEÓN 2 (China) -->
   <div class="accordion">
     <div class="accordion-header">
       <h3>2. Culture and Traditions</h3>
@@ -324,7 +342,6 @@ footer {
     <div class="accordion-content">
       <div class="accordion-inner">
         <img src="3festival.jpg" alt="Family Dinner" class="section-img">
-        <!-- Texto acortado a viñetas -->
         <ul>
           <li>New Year's Eve: Big family dinner.</li>
           <li><span class="highlight">Nobody</span> sleeps early. They <span class="highlight">stay up</span> for fireworks.</li>
@@ -335,16 +352,33 @@ footer {
     </div>
   </div>
 
-  <!-- ACORDEÓN 3 -->
+  <!-- NUEVO ACORDEÓN 3: COMPARACIÓN CON COLOMBIA -->
   <div class="accordion">
     <div class="accordion-header">
-      <h3>3. My Research Experience</h3>
+      <h3>3. A Universal Connection (Colombia)</h3>
+      <div class="icon">+</div>
+    </div>
+    <div class="accordion-content">
+      <div class="accordion-inner">
+        <!-- Aquí van las dos imágenes lado a lado -->
+        <div class="image-grid">
+          <img src="colombia1.jpg" alt="Colombia Tradition 1">
+          <img src="colombia2.jpg" alt="Colombia Tradition 2">
+        </div>
+        <p>I think it's interesting because cleaning is a <span class="highlight">universal</span> way to start a new year.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACORDEÓN 4: Mi Experiencia (Antes era el 3) -->
+  <div class="accordion">
+    <div class="accordion-header">
+      <h3>4. My Research Experience</h3>
       <div class="icon">+</div>
     </div>
     <div class="accordion-content">
       <div class="accordion-inner">
         <img src="4maestro.jpg" alt="Research" class="section-img">
-        <!-- Texto acortado y adaptado a la realidad (investigación) -->
         <ul>
           <li>The community <span class="highlight">started</span> this tradition centuries ago.</li>
           <li>During my research, I <span class="highlight">had never understood</span> the importance of red until I read about it.</li>
